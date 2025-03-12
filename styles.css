@@ -1,0 +1,25 @@
+.paragraph {
+    font-size: 1.15rem;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.link {
+    width: 160px;
+    height: 80px;
+    background-color: #ddd;
+    border: 1px solid #dedede;
+    border-radius: 8px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 80px;
+    text-decoration: none;
+    color: #000;
+}

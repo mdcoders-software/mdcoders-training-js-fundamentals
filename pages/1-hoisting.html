@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Ejecución de Código</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        textarea { width: 100%; height: 150px; }
+        button { margin-top: 10px; padding: 10px; }
+        #output { margin-top: 20px; padding: 10px; border: 1px solid #ccc; background: #f9f9f9; }
+    </style>
+</head>
+<body>
+    <h2>Simulador de Ejecución de Código</h2>
+    <p>Escribe código JavaScript y observa cómo se ejecuta.</p>
+    <textarea id="codeInput">console.log(miVariable);
+var miVariable = "Hola, Hoisting";
+console.log(x);
+    </textarea>
+    <button onclick="ejecutarCodigo()">Ejecutar Código</button>
+    <h3>Salida:</h3>
+    <div id="output"></div>
+
+    <script>
+        function ejecutarCodigo() {
+            const inputCode = document.getElementById("codeInput").value;
+            const outputDiv = document.getElementById("output");
+            
+            try {
+                eval(inputCode);
+                let resultado = eval(inputCode);
+                outputDiv.innerHTML = `<pre>${resultado !== undefined ? resultado : 'Código ejecutado sin errores'}</pre>`;
+            } catch (error) {
+                outputDiv.innerHTML = `<pre style="color: red;">Error: ${error.message}</pre>`;
+            }
+        }
+    </script>
+</body>
+</html>
