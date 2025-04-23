@@ -1,13 +1,81 @@
 const nombre = document.getElementById('nombre');
 const apellido = document.getElementById('apellido');
 const correo = document.getElementById('correo');
+const registrar = document.getElementById('registrar');
+const listado = document.getElementById('listado');
+const limpiar = document.getElementById('limpiar');
+const errorNombre = document.getElementById('error_nombre');
+const errorApellido = document.getElementById('error_apellido');
+const errorCorreo = document.getElementById('error_correo');
+
+
+let registro = '';
+
+registrar.addEventListener('click', e => {
+    registro += `${nombre.value}  
+    ${apellido.value} 
+    ${correo.value}`
+    listado.innerHTML = registro
+    // listado.appendChild(registro)
+    // console.log(listado.textContent);
+
+    validarCampos();
+    borrarCampos();
+
+})
+
+limpiar.addEventListener('click', () => {
+    borrarCampos();
+
+})
+
+function borrarCampos() {
+    nombre.value = '';
+    apellido.value = '';
+    correo.value = ''
+}
+
+function validarCampos() {
+    // if (nombre.value.length == 0) console.log('Ingrese el nombre ');
+    // if (apellido.value.length == 0) console.log('Ingrese el apellido ');
+
+    if (nombre.value.length == 0) {
+        errorNombre.style.display = 'inline';
+        nombre.style.borderColor = 'red'
+    }
+
+    if (apellido.value.length == 0) {
+        errorApellido.style.display = 'inline';
+        apellido.style.borderColor = 'red'
+    }
+
+    if (correo.value.length == 0) {
+        errorCorreo.style.display = 'inline';
+        correo.style.borderColor = 'red'
+    }
+
+
+}
+
+// console.log(nombre.value.length)
+
+
+
+
+
+
+
+
+;
+
+
 
 // const objeto = {
 //     propiedad1: 1,
 //     otraFuncion() {
 //         miFuncion();
 //         funcion();
-//         console.log(this);    
+//         console.log(this);
 //     }
 // }
 
