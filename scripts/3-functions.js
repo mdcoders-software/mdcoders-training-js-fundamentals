@@ -7,26 +7,40 @@ const limpiar = document.getElementById('limpiar');
 const errorNombre = document.getElementById('error_nombre');
 const errorApellido = document.getElementById('error_apellido');
 const errorCorreo = document.getElementById('error_correo');
+const form = document.getElementById('form');
 
 
 let registro = '';
 
 registrar.addEventListener('click', e => {
-    registro += `${nombre.value}  
-    ${apellido.value} 
-    ${correo.value}`
-    listado.innerHTML = registro
-    // listado.appendChild(registro)
-    // console.log(listado.textContent);
-
-    validarCampos();
-    borrarCampos();
-
+    e.preventDefault();
+    // const isValid = validarCampos();
+    if (validarCampos()) {
+        registro += `${nombre.value} 
+        ${apellido.value} 
+        ${correo.value}`
+        listado.innerHTML = registro
+        borrarCampos();
+    }
 })
 
 limpiar.addEventListener('click', () => {
     borrarCampos();
+})
 
+nombre.addEventListener('keypress', (e) => {
+    errorNombre.style.display = 'none';
+    nombre.style.borderColor = 'black';
+})
+
+apellido.addEventListener('keypress', (e) => {
+    errorApellido.style.display = 'none';
+    apellido.style.borderColor = 'black';
+})
+
+correo.addEventListener('keypress', (e) => {
+    errorCorreo.style.display = 'none';
+    correo.style.borderColor = 'black';
 })
 
 function borrarCampos() {
@@ -36,25 +50,25 @@ function borrarCampos() {
 }
 
 function validarCampos() {
-    // if (nombre.value.length == 0) console.log('Ingrese el nombre ');
-    // if (apellido.value.length == 0) console.log('Ingrese el apellido ');
-
+    let isValid = true;
     if (nombre.value.length == 0) {
         errorNombre.style.display = 'inline';
-        nombre.style.borderColor = 'red'
+        nombre.style.borderColor = 'red';
+        isValid = false;
     }
 
     if (apellido.value.length == 0) {
         errorApellido.style.display = 'inline';
-        apellido.style.borderColor = 'red'
+        apellido.style.borderColor = 'red';
+        isValid = false;
     }
 
     if (correo.value.length == 0) {
         errorCorreo.style.display = 'inline';
-        correo.style.borderColor = 'red'
+        correo.style.borderColor = 'red';
+        isValid = false;
     }
-
-
+    return isValid;
 }
 
 // console.log(nombre.value.length)

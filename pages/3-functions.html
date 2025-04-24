@@ -10,17 +10,19 @@
 
 <body>
     <h1>Registrar Usuario</h1>
-    <input id="nombre" type="text" placeholder="Ingrese nombre"><br>
-    <span id="error_nombre">Ingrese el nombre</span><br>
+    <form id="form">
+        <input id="nombre" type="text" placeholder="Ingrese nombre"><br>
+        <span id="error_nombre">Ingrese el nombre</span><br>
 
-    <input id="apellido" type="text" placeholder="Ingrese apellido"><br>
-    <span id="error_apellido">Ingrese el apellido</span><br>
+        <input id="apellido" type="text" placeholder="Ingrese apellido"><br>
+        <span id="error_apellido">Ingrese el apellido</span><br>
 
-    <input id="correo" type="text" placeholder="Ingrese correo"><br>
-    <span id="error_correo">Ingrese el correo</span><br>
+        <input id="correo" type="text" placeholder="Ingrese correo"><br>
+        <span id="error_correo">Ingrese el correo</span><br>
 
-    <button id="registrar">Registrar</button>
-    <button id="limpiar">Limpiar</button>
+        <button id="registrar">Registrar</button>
+        <button id="limpiar" type="button">Limpiar</button>
+    </form>
     <br><br>
     <div id="listado"></div>
     <script src="/scripts/3-functions.js"></script>
