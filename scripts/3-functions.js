@@ -9,20 +9,103 @@ const errorApellido = document.getElementById('error_apellido');
 const errorCorreo = document.getElementById('error_correo');
 const form = document.getElementById('form');
 
+let registro = ``;
+let usuarioLista = [];
 
-let registro = '';
+window.onload = () => {
+    validarStorage();
+
+}
+function validarStorage() {
+
+    const data = localStorage.getItem('usuarioLista');
+    const parsedata = JSON.parse(data);
+    // console.log(data.length);
+    // console.log(parsedata.length);
+    // if (parsedata != null && parsedata.length > 0)
+    // if (parsedata && parsedata.length )
+    if (parsedata?.length) {  //optional chaining
+        console.log('no hay data');
+        usuarioLista = [...parsedata];
+        console.log(usuarioLista);
+        generarTabla();
+    }
+
+
+    // let a = null;
+    // if (a?.length) {
+    // console.log('Truthy');
+    // } else {
+    // console.log('Falsy');
+    // }
+    // console.log(data);
+    // console.log(parsedata);
+
+    // let b = NaN
+    // console.log(!!b); // 
+
+    // let c = a ?? [2, 3]; // Nullish Coalescing
+    // if (c.length) {
+    // console.log(c);
+    // }
+}
 
 registrar.addEventListener('click', e => {
     e.preventDefault();
     // const isValid = validarCampos();
     if (validarCampos()) {
-        registro += `${nombre.value} 
-        ${apellido.value} 
-        ${correo.value}`
-        listado.innerHTML = registro
-        borrarCampos();
+
+        const objUsuario = {
+            nombre: nombre.value,
+            apellido: apellido.value,
+            correo: correo.value
+        }
+        usuarioLista.push(objUsuario);
+
+        // usuarioLista.push({
+        // nombre: nombre.value,
+        // apellido: apellido.value,
+        // correo: correo.value
+        // })
+
+        generarTabla()
+
+        // sessionStorage.setItem('usuarioLista', JSON.stringify(usuarioLista));
+        localStorage.setItem('usuarioLista', JSON.stringify(usuarioLista));
     }
-})
+
+});
+
+function generarTabla() {
+    registro = '';
+    usuarioLista.forEach((usuario) => {
+        registro += `
+    <tr>
+        <td>${usuario.nombre}</td>
+        <td>${usuario.apellido}</td>
+        <td>${usuario.correo}</td>
+    </tr>
+`
+    })
+    console.log(registro);
+    let table = `
+        <table>
+        <thead>
+        <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Correo</th>
+        </tr>
+        </thead>
+        <tbody>
+        ${registro}
+        </tbody>
+        </table>
+        `;
+    console.log(table);
+    listado.innerHTML = table;
+    borrarCampos();
+}
 
 limpiar.addEventListener('click', () => {
     borrarCampos();
